@@ -38,7 +38,9 @@ dependencies {
 
 tasks.processResources {
     val props = mapOf(
-        "version" to project.version
+        "version" to project.version,
+        "neoforge_version" to project.properties["neoforge_version"]!!,
+        "minecraft_version" to project.properties["minecraft_version"]!!,
     )
     inputs.properties(props)
 

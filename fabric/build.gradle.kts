@@ -35,7 +35,9 @@ dependencies {
 
 tasks.processResources {
     val props = mapOf(
-        "version" to project.version
+        "version" to project.version,
+        "fabric_loader_version" to project.properties["fabric_loader_version"]!!,
+        "minecraft_version" to project.properties["minecraft_version"]!!,
     )
     inputs.properties(props)
 
