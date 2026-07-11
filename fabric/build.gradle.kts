@@ -51,3 +51,12 @@ tasks.shadowJar {
     archiveClassifier = "dev-shadow"
 }
 
+// TODO: find better way to include :common files
+tasks.jar {
+    dependsOn(shadowBundle)
+    from(shadowBundle.files.map { zipTree(it) }) {
+        exclude("META-INF/MANIFEST.MF")
+        exclude("META-INF/maven/**")
+    }
+}
+
