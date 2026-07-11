@@ -9,8 +9,8 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 public class KeyRegisterer {
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
-        for (var keyBinding : HoldCam.getKeyBindings()) {
-            event.register(keyBinding);
+        for (var keyMapping : HoldCam.getKeyMappings()) {
+            event.register(keyMapping);
         }
     }
 }

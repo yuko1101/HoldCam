@@ -24,9 +24,10 @@ val shadowBundle: Configuration by configurations.creating {
 }
 
 dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${rootProject.properties["fabric_loader_version"]!!}")
+    implementation("net.fabricmc:fabric-loader:${rootProject.properties["fabric_loader_version"]!!}")
+//    implementation("net.fabricmc.fabric-api:fabric-api:${rootProject.properties["fabric_api_version"]!!}")
 
-    common(project(path = ":common", configuration = "namedElements")) {
+    common(project(path = ":common")) {
         isTransitive = false
     }
     shadowBundle(project(path = ":common", configuration = "transformProductionFabric"))
@@ -48,6 +49,3 @@ tasks.shadowJar {
     archiveClassifier = "dev-shadow"
 }
 
-tasks.remapJar {
-    inputFile.set(tasks.shadowJar.get().archiveFile)
-}

@@ -1,8 +1,6 @@
-import net.fabricmc.loom.api.LoomGradleExtensionAPI
-
 plugins {
-    id("dev.architectury.loom") version "1.11-SNAPSHOT" apply false
-    id("architectury-plugin") version "3.4-SNAPSHOT"
+    id("dev.architectury.loom-no-remap") version "1.17-SNAPSHOT" apply false
+    id("architectury-plugin") version "3.5-SNAPSHOT"
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
     java
     `maven-publish`
@@ -18,11 +16,9 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "dev.architectury.loom")
+    apply(plugin = "dev.architectury.loom-no-remap")
     apply(plugin = "architectury-plugin")
     apply(plugin = "maven-publish")
-
-    val loom = extensions.getByName("loom") as LoomGradleExtensionAPI
 
     base {
         // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
@@ -39,13 +35,8 @@ subprojects {
 
     dependencies {
         val minecraft = configurations.getByName("minecraft")
-        val mappings = configurations.getByName("mappings")
 
         minecraft("net.minecraft:minecraft:${rootProject.properties["minecraft_version"]!!}")
-        mappings(loom.layered {
-            mappings("net.fabricmc:yarn:${rootProject.properties["yarn_mappings"]!!}:v2")
-            mappings("dev.architectury:yarn-mappings-patch-neoforge:${rootProject.properties["yarn_mappings_patch_neoforge"]!!}")
-        })
     }
 
     java {
@@ -54,12 +45,12 @@ subprojects {
         // If you remove this line, sources will not be generated.
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        options.release = 21
+        options.release = 25
     }
 
     tasks.withType<Jar>().configureEach {

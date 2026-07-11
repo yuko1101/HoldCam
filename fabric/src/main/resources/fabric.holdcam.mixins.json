@@ -1,11 +1,11 @@
 {
   "required": true,
   "package": "io.github.yuko1101.holdcam.fabric.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "minVersion": "0.8",
   "client": [
-    "GameOptionsMixin",
-    "MinecraftClientMixin"
+    "OptionsMixin",
+    "MinecraftMixin"
   ],
   "mixins": [
   ],

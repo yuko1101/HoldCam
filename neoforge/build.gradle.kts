@@ -30,7 +30,7 @@ repositories {
 dependencies {
     neoForge("net.neoforged:neoforge:${rootProject.properties["neoforge_version"]!!}")
 
-    common(project(path = ":common", configuration = "namedElements")) {
+    common(project(path = ":common")) {
         isTransitive = false
     }
     shadowBundle(project(path = ":common", configuration = "transformProductionNeoForge"))
@@ -50,8 +50,4 @@ tasks.processResources {
 tasks.shadowJar {
     configurations = listOf(shadowBundle)
     archiveClassifier = "dev-shadow"
-}
-
-tasks.remapJar {
-    inputFile.set(tasks.shadowJar.get().archiveFile)
 }
