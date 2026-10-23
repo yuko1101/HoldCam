@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.KeyMapping;
-import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -13,8 +12,8 @@ public class HoldCam {
 	public static final String MOD_ID = "holdcam";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	private static final CamKey REAR_CAM_KEY = new CamKey(new KeyMapping("key.rearcam", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, KeyMapping.Category.MISC), CameraType.THIRD_PERSON_FRONT);
-	private static final CamKey FRONT_CAM_KEY = new CamKey(new KeyMapping("key.frontcam", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, KeyMapping.Category.MISC), CameraType.THIRD_PERSON_BACK);
+	private static final CamKey REAR_CAM_KEY = new CamKey(new KeyMapping("key.rearcam", InputConstants.Type.KEYBOARD, InputConstants.KEY_R, KeyMapping.Category.MISC), CameraType.THIRD_PERSON_FRONT);
+	private static final CamKey FRONT_CAM_KEY = new CamKey(new KeyMapping("key.frontcam", InputConstants.Type.KEYBOARD, InputConstants.KEY_G, KeyMapping.Category.MISC), CameraType.THIRD_PERSON_BACK);
 
 	public static final List<CamKey> CAM_KEYS = List.of(
 			REAR_CAM_KEY,
